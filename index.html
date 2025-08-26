@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Computer Science</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff9d',
+                        secondary: '#008f5d'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --text-primary: #ffffff;
+        }
+
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .light {
+            background-color: #ffffff;
+            color: #121212;
+        }
+
+        .hero-bg {
+            background-image: uimages/rl('heroback.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .fade-in-delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in-delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .fade-in-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .menu-toggle {
+            transition: transform .5s ease;
+        }
+
+        .menu-toggle.active {
+            transform: rotate(90deg);
+        }
+
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        /* .faculty-card{
+            width:400px ;
+           margin: auto;
+           display: flex;
+            
+        } */
+
+        .faculty-card:hover{
+            
+            box-shadow: 0 5px 12px #ffffff;
+        }
+
+        .fac_box:hover{
+            scale: 1.02;
+            transition: .5s ease-in-out;
+        }
+        .hero_btns button:hover{
+            box-shadow: 0 5px 35px rgb(108, 150, 255);
+            scale: 1.05;
+            transition: .5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="dark">
+    <header class="fixed top-0 w-full z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 flex items-center justify-center">
+                        <i class="ri-computer-line text-2xl text-primary"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Computer Science</h1>
+                        <p class="text-xs text-gray-400">Department</p>
+                    </div>
+                </div>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-primary transition-colors">Home</a>
+                    <a href="#faculty" class="text-gray-300 hover:text-primary transition-colors">Faculty</a>
+                    <a href="#learning" class="text-gray-300 hover:text-primary transition-colors">Learning</a>
+                    <a href="#resources" class="text-gray-300 hover:text-primary transition-colors">Resources</a>
+                    <a href="#resources" class="text-gray-300 hover:text-primary transition-colors">Gallary</a>
+                    <a href="https://midnaporecollege.ac.in" target="_blank"><button class="border border-primary text-primary px-3 py-1 rounded-button font-semibold hover:bg-primary hover:text-black transition-colors whitespace-nowrap !rounded-button" style="width:100%">
+                           College's Website
+                        </button></a>
+                </nav>
+                <div class="hidden lg:flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search..."
+                            class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 pl-10 text-sm focus:outline-none focus:border-primary">
+                        <div
+                            class="w-5 h-5 flex items-center justify-center absolute left-3 top-1/2 transform -translate-y-1/2">
+                            <i class="ri-search-line text-gray-400"></i>
+                        </div>
+                        <div id="searchResults"
+                            class="absolute top-full mt-2 w-full bg-gray-800 border border-gray-700 rounded-lg hidden search-results">
+                        </div>
+                    </div>
+                    <button id="themeToggle" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors">
+                        <i class="ri-moon-line text-primary"></i>
+                    </button>
+                </div>
+                <button id="mobileMenuToggle" class="lg:hidden w-10 h-10 flex items-center justify-center">
+                    <i class="ri-menu-line text-2xl text-primary menu-toggle"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="lg:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800 hidden">
+            <div class="container mx-auto px-4 py-4">
+                <nav class="flex flex-col space-y-4 mb-6">
+                    <a href="#home" class="text-gray-300 hover:text-primary transition-colors">Home</a>
+                    <a href="#faculty" class="text-gray-300 hover:text-primary transition-colors">Faculty</a>
+                    <a href="#learning" class="text-gray-300 hover:text-primary transition-colors">Learning</a>
+                    <a href="#resources" class="text-gray-300 hover:text-primary transition-colors">Resources</a>
+                    <a href="#resources" class="text-gray-300 hover:text-primary transition-colors">Gallary</a>
+                    <a href="https://midnaporecollege.ac.in" target="_blank"><button class="border border-primary text-primary px-3 py-1 rounded-button font-semibold hover:bg-primary hover:text-black transition-colors whitespace-nowrap !rounded-button" style="width:50%">
+                           College's Website
+                        </button></a>
+                </nav>
+                <div class="space-y-4">
+                    <div class="relative">
+                        <input type="text" id="mobileSearchInput" placeholder="Search..."
+                            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 pl-10 text-sm focus:outline-none focus:border-primary">
+                        <div
+                            class="w-5 h-5 flex items-center justify-center absolute left-3 top-1/2 transform -translate-y-1/2">
+                            <i class="ri-search-line text-gray-400"></i>
+                        </div>
+                    </div>
+                    <button id="mobileThemeToggle" class="w-full flex items-center justify-center space-x-2 bg-gray-800 hover:bg-gray-700 rounded-lg py-2 transition-colors">
+                        <i class="ri-moon-line text-primary"></i>
+                        <span class="text-sm">Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="home" class="hero-bg min-h-screen flex items-center relative">
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-4xl">
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-6 fade-in">
+                        Department of<br>
+                        <span class="text-primary">Computer Science</span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl text-gray-300 mb-8 max-w-2xl fade-in fade-in-delay-1">
+                        Pioneering innovation in technology education, research, and development. Shaping the future of
+                        computing through excellence in teaching and cutting-edge research.
+                    </p>
+                    <div class=" hero_btns flex flex-col sm:flex-row gap-4 fade-in fade-in-delay-2">
+                        <a href="#learning"><button class="bg-primary text-black px-8 py-3 rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap !rounded-button" style="width:100%;">
+                            Explore Programs
+                        </button></a>
+                        <a href="#learning"><button class="border border-primary text-primary px-8 py-3 rounded-button font-semibold hover:bg-primary hover:text-black transition-colors whitespace-nowrap !rounded-button" style="width:100%">
+                            Research Areas
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="faculty" class="py-20 bg-[#0f1117]">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl font-bold mb-3">Faculty Profiles</h1>
+                    <p class="text-gray-400 text-lg">Meet Our Distinguished Faculty Members</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button data-filter="all"
+                        class="faculty-filter px-6 py-2 bg-primary text-black font-medium rounded-full whitespace-nowrap">All
+                        Staff</button>
+                    <button data-filter="hod"
+                        class="faculty-filter px-6 py-2 bg-[#1e2231] text-gray-300 font-medium rounded-full hover:bg-[#262b3d] transition-colors whitespace-nowrap">HOD</button>
+                    <button data-filter="assistant"
+                        class="faculty-filter px-6 py-2 bg-[#1e2231] text-gray-300 font-medium rounded-full hover:bg-[#262b3d] transition-colors whitespace-nowrap">Assistant
+                        Professors</button>
+                    <button data-filter="associate"
+                        class="faculty-filter px-6 py-2 bg-[#1e2231] text-gray-300 font-medium rounded-full hover:bg-[#262b3d] transition-colors whitespace-nowrap">Associate
+                        Professors</button>
+                    <button data-filter="nonteaching"
+                        class="faculty-filter px-6 py-2 bg-[#1e2231] text-gray-300 font-medium rounded-full hover:bg-[#262b3d] transition-colors whitespace-nowrap">Non-teaching
+                        Staff</button>
+                </div>
+                <div id="facultyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <template id="facultyCardTemplate">
+                        <div class="faculty-card bg-[#1e2231] rounded-xl p-6 opacity-0 transform translate-y-4 group hover:bg-[#262b3d] transition-all duration-300" data-category="">
+                            <div class="fac_box relative w-full aspect-rectangle mb-4 rounded-xl overflow-hidden group-hover:shadow-xl transition-all duration-300">
+                                <div class="relative w-full aspect-square mb-4 rounded-xl overflow-hidden">
+                                    <img src="" alt="Professor" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                                        <div>
+                                            <h3 class="font-semibold text-lg"></h3>
+                                            <p class="text-sm text-gray-300"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-[#161923] rounded-lg">
+                                            <i class="ri-mail-line text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-400">Email</p>
+                                            <p class="text-sm email"></p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-[#161923] rounded-lg">
+                                            <i class="ri-graduation-cap-line text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-400">Qualification</p>
+                                            <p class="text-sm phone"></p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-[#161923] rounded-lg">
+                                            <i class="ri-file-line text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-400">Designation</p>
+                                            <p class="text-sm office"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </template>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section id="highlights" class="py-20 bg-[#0f1117]">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl font-bold mb-3">Department Highlights</h1>
+                    <p class="text-gray-400">Excellence in Education, Research, and Innovation</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div
+                        class="bg-[#1e2231] rounded-xl p-8 text-center hover:bg-[#262b3d] transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <i class="ri-file-list-line text-3xl text-primary"></i>
+                        </div>
+                        <h2 class="counter text-5xl font-bold text-primary mb-3" data-target="4">0</h2>
+                        <p class="text-gray-400">Publications</p>
+                    </div>
+                    <div
+                        class="bg-[#1e2231] rounded-xl p-8 text-center hover:bg-[#262b3d] transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <i class="ri-flask-line text-3xl text-primary"></i>
+                        </div>
+                        <h2 class="counter text-5xl font-bold text-primary mb-3" data-target="15">0</h2>
+                        <p class="text-gray-400">Research Projects</p>
+                    </div>
+                    <div
+                        class="bg-[#1e2231] rounded-xl p-8 text-center hover:bg-[#262b3d] transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <i class="ri-award-line text-3xl text-primary"></i>
+                        </div>
+                        <h2 class="counter text-5xl font-bold text-primary mb-3" data-target="12">0</h2>
+                        <p class="text-gray-400">Awards</p>
+                    </div>
+                    <div
+                        class="bg-[#1e2231] rounded-xl p-8 text-center hover:bg-[#262b3d] transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <i class="ri-user-3-line text-3xl text-primary"></i>
+                        </div>
+                        <h2 class="counter text-5xl font-bold text-primary mb-3" data-target="200">0+</h2>
+                        <p class="text-gray-400">Students</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="learning" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Learning Path</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Comprehensive curriculum designed to provide students
+                        with strong fundamentals and advanced knowledge in computer science.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 1</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem1" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <div class="space-y-6">
+                                    <div class="space-y-3">
+                                        <h4 class="font-medium text-primary">Course Overview</h4>
+                                        <ul class="space-y-3">
+                                            <li class="flex items-center space-x-3">
+                                                <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                                <span>Introduction to Programming (4 Credits)</span>
+                                            </li>
+                                            <li class="flex items-center space-x-3">
+                                                <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                                <span>Mathematics for Computer Science (3 Credits)</span>
+                                            </li>
+                                            <li class="flex items-center space-x-3">
+                                                <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                                <span>Digital Logic Design (4 Credits)</span>
+                                            </li>
+                                            <li class="flex items-center space-x-3">
+                                                <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                                <span>English Communication (2 Credits)</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <h4 class="font-medium text-primary">Learning Outcomes</h4>
+                                        <ul class="space-y-2 text-sm text-gray-400">
+                                            <li>• Understanding fundamental programming concepts and problem-solving
+                                                techniques</li>
+                                            <li>• Mastering mathematical foundations for computer science applications
+                                            </li>
+                                            <li>• Designing and analyzing digital circuits and systems</li>
+                                            <li>• Developing professional communication skills</li>
+                                        </ul>
+                                    </div>
+                                    <div class="pt-4">
+                                        <a href="https://localandglobal.github.io" target="_blank"
+                                            class="inline-flex items-center gap-2 bg-primary text-black px-6 py-2 rounded-button">
+                                            <span>Learn Now</span>
+                                            <i class="ri-arrow-right-line"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 2</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem2" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Object-Oriented Programming</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Data Structures</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Computer Organization</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Discrete Mathematics</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem3">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 3</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem3" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Algorithms Analysis</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Database Management Systems</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Computer Networks</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Operating Systems</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 4</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem4" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Software Engineering</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Web Development</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Theory of Computation</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Computer Graphics</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem5">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 5</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem5" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Artificial Intelligence</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Machine Learning</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Cybersecurity</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Mobile App Development</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem6">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 6</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem6" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Theory of computation</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Artificial Intelligence(AI)</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Web Development Framework</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Internet of Things</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem7">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 7</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem7" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden">
+                        <button class="w-full p-6 text-left hover:bg-black transition-colors accordion-toggle"
+                            data-target="sem8">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold text-primary">Semester 8</h3>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                        <div id="sem8" class="accordion-content">
+                            <div class="p-6 pt-0">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming/span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                        <span>Upcoming</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="resources" class="py-20 bg-[#0f1117]">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h1
+                        class="text-5xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        Student Resources</h1>
+                    <p class="text-gray-400">Everything You Need for Academic Success</p>
+                </div>
+                <div class="bg-[#161923] rounded-2xl p-6 mb-8">
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <button id="calendarTab"
+                            class="px-6 py-2 bg-primary text-black font-medium rounded-full whitespace-nowrap">Academic
+                            Calendar</button>
+                        <button id="downloadsTab"
+                            class="px-6 py-2 bg-[#1e2231] text-gray-300 font-medium rounded-full hover:bg-[#262b3d] transition-colors whitespace-nowrap">Downloads</button>
+                        <button id="faqTab"
+                            class="px-6 py-2 bg-[#1e2231] text-gray-300 font-medium rounded-full hover:bg-[#262b3d] transition-colors whitespace-nowrap">FAQ</button>
+                        <button id="supportTab"
+                            class="px-6 py-2 bg-[#1e2231] text-gray-300 font-medium rounded-full hover:bg-[#262b3d] transition-colors whitespace-nowrap">Support</button>
+                    </div>
+                    <div id="calendarSection" class="mb-8">
+                        <h2 class="text-2xl font-semibold mb-6 text-primary">Important Dates</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-[#1e2231] rounded-xl p-6">
+                                <h3 class="text-xl font-semibold mb-4">Spring Semester 2024</h3>
+                                <ul class="space-y-3 text-gray-300">
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Registration Opens: January 15, 2024</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Classes Begin: February 1, 2024</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Mid-term Exams: March 15-22, 2024</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Final Exams: May 10-17, 2024</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-[#1e2231] rounded-xl p-6">
+                                <h3 class="text-xl font-semibold mb-4">Fall Semester 2024</h3>
+                                <ul class="space-y-3 text-gray-300">
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Registration Opens: July 15, 2024</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Classes Begin: August 28, 2024</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Mid-term Exams: October 14-21, 2024</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                        <span>Final Exams: December 9-16, 2024</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="faqSection" class="mb-8 hidden">
+        <h2 class="text-2xl font-semibold mb-6 text-primary">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <div class="faq-item bg-[#1e2231] rounded-xl overflow-hidden">
+                <button class="w-full p-6 text-left hover:bg-[#262b3d] transition-colors">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium">How do I register for courses?</h3>
+                        <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                    </div>
+                </button>
+                <div class="faq-answer accordion-content">
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-400">Course registration can be completed through the student portal. Log in
+                            with your credentials, navigate to "Course Registration" and follow these steps:</p>
+                        <ul class="mt-3 space-y-2 text-gray-400">
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Review available courses for your semester</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Select desired courses within credit limits</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Submit registration for approval</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item bg-[#1e2231] rounded-xl overflow-hidden">
+                <button class="w-full p-6 text-left hover:bg-[#262b3d] transition-colors">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium">What resources are available for research?</h3>
+                        <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                    </div>
+                </button>
+                <div class="faq-answer accordion-content">
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-400">The department provides extensive research resources including:</p>
+                        <ul class="mt-3 space-y-2 text-gray-400">
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Access to digital libraries and research databases</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>High-performance computing facilities</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Research labs and equipment</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Faculty mentorship and guidance</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item bg-[#1e2231] rounded-xl overflow-hidden">
+                <button class="w-full p-6 text-left hover:bg-[#262b3d] transition-colors">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium">How can I access online learning materials?</h3>
+                        <i class="ri-arrow-down-s-line text-xl transition-transform"></i>
+                    </div>
+                </button>
+                <div class="faq-answer accordion-content">
+                    <div class="px-6 pb-6">
+                        <p class="text-gray-400">Online learning materials are available through multiple platforms:</p>
+                        <ul class="mt-3 space-y-2 text-gray-400">
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Learning Management System (LMS)</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Digital Library Portal</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>Course-specific repositories</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="supportSection" class="mb-8 hidden">
+        <h2 class="text-2xl font-semibold mb-6 text-primary">Student Support</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-[#1e2231] rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="ri-customer-service-line text-primary"></i>
+                    Help Desk
+                </h3>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-[#161923] rounded-lg">
+                            <i class="ri-phone-line text-primary"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Phone Support</p>
+                            <p class="font-medium">+1 (555) 123-4567</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-[#161923] rounded-lg">
+                            <i class="ri-mail-line text-primary"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Email Support</p>
+                            <p class="font-medium">support@cs.university.edu</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-[#161923] rounded-lg">
+                            <i class="ri-time-line text-primary"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Working Hours</p>
+                            <p class="font-medium">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-[#1e2231] rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="ri-map-pin-line text-primary"></i>
+                    Visit Us
+                </h3>
+                <div class="space-y-4">
+                    <p class="text-gray-400">Department of Computer Science</p>
+                    <p class="text-gray-400">Room 401, CS Building</p>
+                    <p class="text-gray-400">University Campus</p>
+                    <p class="text-gray-400">1234 University Drive</p>
+                    <button
+                        class="mt-4 w-full bg-[#161923] hover:bg-[#1a1f2a] text-primary py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="ri-map-2-line"></i>
+                        <span>Get Directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="downloadsSection" class="mb-8 hidden">
+        <h2 class="text-2xl font-semibold mb-6 text-primary">Downloads</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-[#1e2231] rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="ri-book-line text-primary"></i>
+                    Course Materials
+                </h3>
+                <ul class="space-y-4">
+                    <li class="bg-[#161923] rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="font-medium mb-1">Programming Fundamentals</h4>
+                                <p class="text-sm text-gray-400">Course handbook and lecture notes</p>
+                                <span class="text-xs text-gray-500">PDF • 8.5 MB</span>
+                            </div>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-primary hover:bg-[#1e2231] rounded-lg transition-colors">
+                                <i class="ri-download-line"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="bg-[#161923] rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="font-medium mb-1">Data Structures Guide</h4>
+                                <p class="text-sm text-gray-400">Complete reference material</p>
+                                <span class="text-xs text-gray-500">PDF • 12.3 MB</span>
+                            </div>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-primary hover:bg-[#1e2231] rounded-lg transition-colors">
+                                <i class="ri-download-line"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-[#1e2231] rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="ri-flask-line text-primary"></i>
+                    Lab Resources
+                </h3>
+                <ul class="space-y-4">
+                    <li class="bg-[#161923] rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="font-medium mb-1">Python Lab Manual</h4>
+                                <p class="text-sm text-gray-400">Semester 1 practical guide</p>
+                                <span class="text-xs text-gray-500">PDF • 5.2 MB</span>
+                            </div>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-primary hover:bg-[#1e2231] rounded-lg transition-colors">
+                                <i class="ri-download-line"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="bg-[#161923] rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="font-medium mb-1">Database Lab Guide</h4>
+                                <p class="text-sm text-gray-400">SQL and DBMS exercises</p>
+                                <span class="text-xs text-gray-500">PDF • 6.8 MB</span>
+                            </div>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-primary hover:bg-[#1e2231] rounded-lg transition-colors">
+                                <i class="ri-download-line"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-[#1e2231] rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="ri-file-list-line text-primary"></i>
+                    Forms & Documents
+                </h3>
+                <ul class="space-y-4">
+                    <li class="bg-[#161923] rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="font-medium mb-1">Course Registration</h4>
+                                <p class="text-sm text-gray-400">Registration form template</p>
+                                <span class="text-xs text-gray-500">DOCX • 245 KB</span>
+                            </div>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-primary hover:bg-[#1e2231] rounded-lg transition-colors">
+                                <i class="ri-download-line"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="bg-[#161923] rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="font-medium mb-1">Academic Calendar</h4>
+                                <p class="text-sm text-gray-400">2024 Academic Year</p>
+                                <span class="text-xs text-gray-500">PDF • 1.2 MB</span>
+                            </div>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-primary hover:bg-[#1e2231] rounded-lg transition-colors">
+                                <i class="ri-download-line"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-computer-line text-xl text-primary"></i>
+                        </div>
+                        <span class="text-lg font-semibold">Computer Science</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Excellence in computer science education and research since 1985.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">Admissions</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Research</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Events</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Alumni</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Programs</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">Bachelor's Degree</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Master's Degree</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Online Courses</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Computer Science Building</li>
+                        <li>Midnapore College(Autonomous) Campus</li>
+                        <li>Phone: +911234567890</li>
+                        <li>Email: </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2025 Department of Computer Science. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = mobileMenuToggle.querySelector('i');
+            mobileMenuToggle.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('ri-menu-line');
+                menuIcon.classList.toggle('ri-close-line');
+                menuIcon.classList.toggle('active');
+            });
+        });
+    </script>
+    <script id="counter-animation-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => animateCounter(counter), 100);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        animateCounter(counter);
+                    }
+                });
+            };
+            const observer = new IntersectionObserver(observerCallback, {
+                threshold: .5
+            });
+            counters.forEach(counter => observer.observe(counter));
+        });
+    </script>
+    <!-- Light & Dark mode -->
+    <script id="theme-toggle-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggle = document.getElementById('themeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const body = document.body;
+            const root = document.documentElement;
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    body.classList.remove('dark');
+                    body.classList.add('light');
+                    root.style.setProperty('--bg-primary', '#ffffff');
+                    root.style.setProperty('--text-primary', '#121212');
+                    themeToggle.querySelector('i').className = 'ri-sun-line text-secondary';
+                    mobileThemeToggle.querySelector('i').className = 'ri-sun-line text-secondary';
+                    mobileThemeToggle.querySelector('span').textContent = 'Light Mode';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.remove('light');
+                    body.classList.add('dark');
+                    root.style.setProperty('--bg-primary', '#121212');
+                    root.style.setProperty('--text-primary', '#ffffff');
+                    themeToggle.querySelector('i').className = 'ri-moon-line text-primary';
+                    mobileThemeToggle.querySelector('i').className = 'ri-moon-line text-primary';
+                    mobileThemeToggle.querySelector('span').textContent = 'Dark Mode';
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+            themeToggle.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark') ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+            mobileThemeToggle.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark') ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+        });
+    </script>
+    <script id="search-functionality-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchData = [
+                { title: 'Shovan Roy', category: 'Faculty', type: 'Professor' },
+                { title: 'Dr.Aliv Kumar Mondal', category: 'Faculty', type: 'Professor' },
+                { title: 'Dr. Sharmistha Jana', category: 'Faculty', type: 'Professor' },
+                { title: 'Data Structure', category: 'Course', type: 'Semester 3' },
+                { title: 'DBMS', category: 'Course', type: 'Semester 5' },
+                { title: 'Digital Electrinics', category: 'Course', type: 'Semester 2' },
+                { title: 'Academic Calendar', category: 'Resource', type: 'General' },
+                { title: 'PYQs', category: 'Resource', type: 'Academic' },
+                { title: 'Learnings', category: 'Resource', type: 'Academic' }
+            ];
+            function performSearch(query) {
+                if (query.length < 2) {
+                    searchResults.classList.add('hidden');
+                    return;
+                }
+                const results = searchData.filter(item =>
+                    item.title.toLowerCase().includes(query.toLowerCase()) ||
+                    item.category.toLowerCase().includes(query.toLowerCase()) ||
+                    item.type.toLowerCase().includes(query.toLowerCase())
+                );
+                if (results.length > 0) {
+                    searchResults.innerHTML = results.map(result => `
+<div class="p-3 hover:bg-gray-700 cursor-pointer border-b border-gray-700 last:border-b-0">
+<div class="font-medium">${result.title}</div>
+<div class="text-sm text-gray-400">${result.category} • ${result.type}</div>
+</div>
+`).join('');
+                    searchResults.classList.remove('hidden');
+                } else {
+                    searchResults.innerHTML = '<div class="p-3 text-gray-400">No results found</div>';
+                    searchResults.classList.remove('hidden');
+                }
+            }
+            searchInput.addEventListener('input', function () {
+                performSearch(this.value);
+            });
+            mobileSearchInput.addEventListener('input', function () {
+                performSearch(this.value);
+            });
+            document.addEventListener('click', function (e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    <script id="accordion-functionality-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionToggles = document.querySelectorAll('.accordion-toggle');
+            const semesterContent = {
+                sem1: {
+                    courses: [
+                        { name: 'Introduction to C Programming', },
+                        { name: 'Introduction to C++ Programming', }
+                    ],
+                    outcomes: [
+                        'Understanding fundamental programming concepts and problem-solving techniques',
+                        'Understanding of OOPs in C++'
+                    ]
+                },
+                sem2: {
+                    courses: [
+                        { name: 'Digital Electronics', },
+                        { name: 'Computer Architecture & Organization', }
+                    ],
+                    outcomes: [
+                        'Designing and analyzing digital circuits and systems',
+                        'Understanding computer architecture and organization'
+                    ]
+                },
+                sem3: {
+                    courses: [
+                        { name: 'Data Structures', },
+                        { name: 'Discrete Mathematics', },
+                        { name: 'Java & Web development', }
+                    ],
+                    outcomes: [
+                        'Understanding different data structures',
+                        'Solving discrete mathematics problems',
+                        'Understanding Java and OOPs in java'
+                    ]
+                },
+                sem4: {
+                    courses: [
+                        { name: 'Algorithms', },
+                        { name: 'Operating Systems', },
+                        { name: 'Java & Web development Practical', },
+                        { name: 'Computer Networking', }
+                    ],
+                    outcomes: [
+                        'Different methodologies of algorithms',
+                        'Understanding of OS',
+                        'Java development',
+                        'Working of computer networks & OSI model'
+                    ]
+                },
+                sem5: {
+                    courses: [
+                        { name: 'DBMS', },
+                        { name: 'Software Engineering', },
+                        { name: 'Numerical & Python', },
+                        { name: 'Computer Graphics', },
+                        { name: 'Microprocessor & Microcontroller', }
+                    ],
+                    outcomes: [
+                        'Database Management techniques',
+                        'Building realworld Software applications',
+                        'Understanding of python and solving different algorithms',
+                        'Understading working of microprocessors and controllers'
+                    ]
+                },
+                sem6: {
+                    courses: [
+                        { name: 'Theory of Computation',  },
+                        { name: 'Artificial Intelligence',},
+                        { name: 'Web Development Frameworks', },
+                        { name: 'Internet of Things', }
+                    ],
+                    outcomes: [
+                        'Commputation',
+                        'AI principles and problem-solving techniques',
+                        'User interface design principles',
+                        'Internet of Things'
+                    ]
+                },
+                sem7: {
+                    courses: [
+                        { name: 'Upcoming' },
+                        { name: 'Upcoming'},
+                        { name: 'Upcoming' },
+                        { name: 'Upcoming' }
+                    ],
+                    outcomes: [
+                        'Not Updated yet'
+                    ]
+                },
+                sem8: {
+                    courses: [
+                        { name: 'Upcoming' },
+                        { name: 'Upcoming'},
+                        { name: 'Upcoming' },
+                        { name: 'Upcoming' }
+                    ],
+                    outcomes: [
+                        'Not Updated yet'
+                    ]
+                }
+            };
+            function createSemesterContent(semId) {
+                const content = semesterContent[semId];
+                if (!content) return '';
+                return `
+<div class="space-y-6">
+<div class="space-y-3">
+<h4 class="font-medium text-primary">Course Overview</h4>
+<ul class="space-y-3">
+${content.courses.map(course => `
+<li class="flex items-center space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span>${course.name} </span>
+</li>
+`).join('')}
+</ul>
+</div>
+<div class="space-y-3">
+<h4 class="font-medium text-primary">Learning Outcomes</h4>
+<ul class="space-y-2 text-sm text-gray-400">
+${content.outcomes.map(outcome => `
+<li>• ${outcome}</li>
+`).join('')}
+</ul>
+</div>
+<div class="pt-4">
+<a href="https://localandglobal.github.io" target="_blank" class="inline-flex items-center gap-2 bg-primary text-black px-6 py-2 rounded-button hover:bg-primary/90 transition-colors">
+<span>Learn Now</span>
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+`;
+            }
+            accordionToggles.forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const target = document.getElementById(this.dataset.target);
+                    const icon = this.querySelector('i');
+                    if (target.classList.contains('active')) {
+                        target.classList.remove('active');
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        accordionToggles.forEach(otherToggle => {
+                            const otherTarget = document.getElementById(otherToggle.dataset.target);
+                            const otherIcon = otherToggle.querySelector('i');
+                            otherTarget.classList.remove('active');
+                            otherIcon.style.transform = 'rotate(0deg)';
+                        });
+                        target.classList.add('active');
+                        icon.style.transform = 'rotate(180deg)';
+                        const semId = this.dataset.target;
+                        target.querySelector('.p-6').innerHTML = createSemesterContent(semId);
+                    }
+                });
+            });
+        });
+    </script>
+    <script id="faculty-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const facultyData = [
+                {
+                    name: "Prof. Shovan Roy",
+                    title: "Professor & Head of Department",
+                    email: "shovan.roy@midnaporecollege.ac.in",
+                    phone: "MTech",
+                    office:"S.A.C.T",
+                    image: "sr.jpeg",
+                    category: "hod"
+                },
+                {
+                    name: "Dr.Aliv Kumar Mondal",
+                    title: "Associate Professor",
+                    email: "aliv.kumar.mondal@midnaporecollege.ac.in",
+                    phone: "M.Sc, M.Phil, Ph.D.",
+                    office:"S.A.C.T",
+                    image: "akm.jpeg",
+                    category: "associate"
+                },
+                {
+                    name: "Prof. Koushik Kundu",
+                    title: "Assistant Professor of Cybersecurity",
+                    email: "koushik.kundu@midnaporecollege.ac.in",
+                    phone: "MCA",
+                    office:"S.A.C.T",
+                    image: "kk.jpeg",
+                    category: "assistant"
+                },
+                {
+                    name: "Mr. Santi Pada Dua",
+                    title: "Assistant Professor of Networks",
+                    email: "santi.pada.dua@midnaporecollege.ac.in",
+                    phone: "M.Sc ",
+                    office:"S.A.C.T",
+                    image: "spd.jpg",
+                    category: "assistant"
+                },
+                {
+                    name: "Mrs. Saraswati Dutta",
+                    title: "Assistant Professor of Networks",
+                    email: "saraswati.dutta@midnaporecollege.ac.in",
+                    phone: "MCA, M.Tech",
+                    office:"S.A.C.T",
+                    image: "sd.jpg",
+                    category: "assistant"
+                },
+                {
+                    name: "Mrs. Piyali Sanyal",
+                    title: "Assistant Professor of Networks",
+                    email: "piyali.sanyal@midnaporecollege.ac.in",
+                    phone: "M.Sc.",
+                    office:"S.A.C.T",
+                    image: "ps.jpeg",
+                    category: "assistant"
+                },
+                {
+                    name: "Dr. Sharmistha Jana",
+                    title: "Assistant Professor of Networks",
+                    email: "sharmistha792010@gmail.com",
+                    phone: "M.Sc In Mathematics, MCA, PhD",
+                    office:"S.A.C.T",
+                    image: "sj.jpeg",
+                    category: "assistant"
+                },
+                {
+                    name: "Mr. Shubhankar",
+                    title: "Administrative Coordinator",
+                    email: "patricia.thompson@university.edu",
+                    phone:  "BA General",
+                    office:"Casual",
+                    image: "",
+                    category: "nonteaching"
+                }
+            ];
+            const template = document.getElementById('facultyCardTemplate');
+            const facultyGrid = document.getElementById('facultyGrid');
+            const filterButtons = document.querySelectorAll('.faculty-filter');
+            function createFacultyCard(faculty) {
+                const card = template.content.cloneNode(true);
+                const cardElement = card.querySelector('.faculty-card');
+                cardElement.dataset.category = faculty.category;
+                cardElement.querySelector('img').src = faculty.image;
+ images/               cardElement.querySelector('h3').textContent = faculty.name;
+                cardElement.querySelector('p').textContent = faculty.title;
+                cardElement.querySelector('.email').textContent = faculty.email;
+                cardElement.querySelector('.phone').textContent = faculty.phone;
+                cardElement.querySelector('.office').textContent = faculty.office;
+                return cardElement;
+            }
+            function filterFaculty(category) {
+                const cards = facultyGrid.querySelectorAll('.faculty-card');
+                cards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(4px)';
+                    }
+                });
+            }
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-black');
+                        btn.classList.add('bg-[#1e2231]', 'text-gray-300');
+                    });
+                    button.classList.remove('bg-[#1e2231]', 'text-gray-300');
+                    button.classList.add('bg-primary', 'text-black');
+                    filterFaculty(button.dataset.filter);
+                });
+            });
+            facultyData.forEach(faculty => {
+                const card = createFacultyCard(faculty);
+                facultyGrid.appendChild(card);
+            });
+            filterFaculty('all');
+        });
+    </script>
+    <script id="scroll-animations-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            const animatedElements = document.querySelectorAll('.hover-glow, .bg-gray-800');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+    
+    <script id="resources-tabs-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('#calendarTab, #downloadsTab, #faqTab, #supportTab');
+            const sections = {
+                calendarTab: document.getElementById('calendarSection'),
+                downloadsTab: document.getElementById('downloadsSection'),
+                faqTab: document.getElementById('faqSection'),
+                supportTab: document.getElementById('supportSection')
+            };
+            function showSection(tabId) {
+                Object.values(sections).forEach(section => section.classList.add('hidden'));
+                sections[tabId].classList.remove('hidden');
+            }
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(t => {
+                        t.classList.remove('bg-primary', 'text-black');
+                        t.classList.add('bg-[#1e2231]', 'text-gray-300');
+                    });
+                    this.classList.remove('bg-[#1e2231]', 'text-gray-300');
+                    this.classList.add('bg-primary', 'text-black');
+                    showSection(this.id);
+                });
+            });
+            const downloadButtons = document.querySelectorAll('#downloadsSection button');
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const fileName = this.closest('li').querySelector('h4').textContent;
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed bottom-4 right-4 bg-primary text-black px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2';
+                    notification.innerHTML = `
+<i class="ri-download-line"></i>
+<span>Downloading ${fileName}...</span>
+`;
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 3000);
+                });
+            });
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const button = item.querySelector('button');
+                const answer = item.querySelector('.faq-answer');
+                button.addEventListener('click', () => {
+                    const isOpen = answer.classList.contains('active');
+                    faqItems.forEach(otherItem => {
+                        otherItem.querySelector('.faq-answer').classList.remove('active');
+                        otherItem.querySelector('i').style.transform = 'rotate(0deg)';
+                    });
+                    if (!isOpen) {
+                        answer.classList.add('active');
+                        button.querySelector('i').style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
